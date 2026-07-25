@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    tools {
+        jdk 'JDK21'
+        maven 'Maven'
+		git 'Git'
+    }
+stages {
+	stage('Checkout') {
+		steps {
+			git branch: 'main',
+			url:' https://github.com/vemula2448/second_Testing.git'
+							}
+						}
+	stage('Build') {
+		steps {
+			dir('vemula-new') {
+            bat 'mvn clean package'
+        }
+    }
+}
+	stage('Archive WAR') {
+		steps {
+			archiveArtifacts artifacts: 'vemula-new/target/*.war'
+			}
+		}
+	}
+}
