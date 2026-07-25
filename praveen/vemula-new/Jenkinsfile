@@ -47,4 +47,17 @@ stages {
         }
 			
 	}
+	post {
+        always {
+            echo 'Pipeline execution completed.'
+        }
+
+        success {
+            echo 'Application deployed successfully.'
+        }
+
+        failure {
+            echo 'Pipeline failed. Please check the console output.'
+        }
+    }
 }
