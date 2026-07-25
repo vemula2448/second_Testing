@@ -4,7 +4,6 @@ pipeline {
     tools {
         jdk 'Java21'
         maven 'Maven'
-		git 'git'
     }
 stages {
 	stage('Checkout') {
