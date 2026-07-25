@@ -31,7 +31,7 @@ stages {
 		}
 	stage('Build Docker Image') {
 		steps {
-        bat 'ssh -p 2222 -i "C:\\Users\\Vemula\\vagrant-vm\\centos\\.vagrant\\machines\\default\\virtualbox\\private_key" vagrant@127.0.0.1 "cd /home/vagrant/secodary_App && sudo docker build -t seconddockerapp:v1 ."'
+        bat 'ssh -v -p 2222 -i "C:\\Users\\Vemula\\vagrant-vm\\centos\\.vagrant\\machines\\default\\virtualbox\\private_key" vagrant@127.0.0.1 "cd /home/vagrant/secodary_App && sudo docker build -t seconddockerapp:v1 ."'
 					}
 		}
     stage('Deploy Container') {
