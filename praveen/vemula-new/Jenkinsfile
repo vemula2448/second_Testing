@@ -14,7 +14,7 @@ stages {
 						}
 	stage('Build') {
 		steps {
-			dir('praveen\vemula-new') {
+			dir('praveen/vemula-new') {
             bat 'mvn clean package'
         }
     }
