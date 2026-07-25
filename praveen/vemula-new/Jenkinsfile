@@ -25,28 +25,42 @@ stages {
 			}
 		}
 	stage('Check Docker Version') {
-		steps {
-        bat 'ssh -v -p 2222 -i "C:\\Users\\Vemula\\vagrant-vm\\centos\\.vagrant\\machines\\default\\virtualbox\\private_key" vagrant@127.0.0.1 "sudo docker --version"'
-			}
-		}
-	stage('Build Docker Image') {
-		steps {
-        bat 'ssh -p 2222 -i "C:\\Users\\Vemula\\vagrant-vm\\centos\\.vagrant\\machines\\default\\virtualbox\\private_key" vagrant@127.0.0.1 "cd /home/vagrant/secodary_App && sudo docker build -t seconddockerapp:v1 ."'
-					}
-		}
-    stage('Deploy Container') {
-            steps {
-                bat 'ssh -v -p 2222 -i "C:\\Users\\Vemula\\vagrant-vm\\centos\\.vagrant\\machines\\default\\virtualbox\\private_key" vagrant@127.0.0.1 "sudo docker rm -f seconddockerapp || true && sudo docker run -d --name seconddockerapp -p 8080:8080 seconddockerapp:v1"'
-            }
-        }
+    steps {
+        bat '''
+        ssh -p 2222 -i "C:\\Users\\Vemula\\vagrant-vm\\centos\\.vagrant\\machines\\default\\virtualbox\\private_key" ^
+        vagrant@127.0.0.1 ^
+        "sudo docker --version"
+        '''
+    }
+}
+stage('Build Docker Image') {
+    steps {
+        bat '''
+        ssh -p 2222 -i "C:\\Users\\Vemula\\vagrant-vm\\centos\\.vagrant\\machines\\default\\virtualbox\\private_key" ^
+        vagrant@127.0.0.1 ^
+        "cd /home/vagrant/secodary_App && sudo docker build -t seconddockerapp:v1 ."
+        '''
+    }
+}
+stage('Deploy Container') {
+    steps {
+        bat '''
+        ssh -p 2222 -i "C:\\Users\\Vemula\\vagrant-vm\\centos\\.vagrant\\machines\\default\\virtualbox\\private_key" ^
+        vagrant@127.0.0.1 ^
+        "sudo docker rm -f seconddockerapp || true && sudo docker run -d --name seconddockerapp -p 8080:8080 seconddockerapp:v1"
+        '''
+    }
+}
 
-    stage('Verify Deployment') {
-            steps {
-                bat 'ssh -v -p 2222 -i "C:\\Users\\Vemula\\vagrant-vm\\centos\\.vagrant\\machines\\default\\virtualbox\\private_key" vagrant@127.0.0.1 "sudo docker ps"'
-            }
-        }
-			
-	}
+stage('Verify Deployment') {
+    steps {
+        bat '''
+        ssh -p 2222 -i "C:\\Users\\Vemula\\vagrant-vm\\centos\\.vagrant\\machines\\default\\virtualbox\\private_key" ^
+        vagrant@127.0.0.1 ^
+        "sudo docker ps"
+        '''
+    }
+}
 	post {
         always {
             echo 'Pipeline execution completed.'
