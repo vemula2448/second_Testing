@@ -111,5 +111,7 @@ stage('Verify Deployment') {
         failure {
             echo 'Pipeline failed. Please check the console output.'
         }
-    }
+		}
+	}
+
 }
