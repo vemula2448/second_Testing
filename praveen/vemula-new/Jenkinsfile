@@ -24,5 +24,10 @@ stages {
 			archiveArtifacts artifacts: 'praveen/vemula-new/target/*.war'
 			}
 		}
+stage('Copy WAR to Vagrant') {
+    steps {
+        bat 'scp -P 2222 -i "C:\\Users\\Vemula\\vagrant-vm\\centos\\.vagrant\\machines\\default\\virtualbox\\private_key" "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Second-Build\\praveen\\vemula-new\\target\\secondarDockerApp.war" vagrant@127.0.0.1:/home/vagrant/'
+    }
+}
 	}
 }
