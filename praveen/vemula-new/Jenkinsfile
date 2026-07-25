@@ -21,7 +21,7 @@ stages {
 }
 	stage('Archive WAR') {
 		steps {
-			archiveArtifacts artifacts: 'vemula-new/target/*.war'
+			archiveArtifacts artifacts: 'praveen/vemula-new/target/*.war'
 			}
 		}
 	}
