@@ -113,5 +113,3 @@ stage('Verify Deployment') {
         }
     }
 }
-
-scp -v -P 2222 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -i "C:\Users\Vemula\vagrant-vm\centos\.vagrant\machines\default\virtualbox\private_key" "C:\ProgramData\Jenkins\.jenkins\workspace\Second-Build\praveen\vemula-new\target\secondarDockerApp.war" vagrant@127.0.0.1:/home/vagrant/
